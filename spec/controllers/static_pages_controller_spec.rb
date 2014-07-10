@@ -1,12 +1,18 @@
-require 'spec_helper'
+class StaticPagesController < ApplicationController
 
-describe StaticPagesController do
-
-  describe "GET '...'" do
-    it "returns http success" do
-      get '...'
-      response.should be_success
+  def home
+    if signed_in?
+      @micropost  = current_user.microposts.build
+      @feed_items = current_user.feed.paginate(page: params[:page])
     end
   end
 
+  def help
+  end
+
+  def about
+  end
+
+  def contact
+  end
 end
